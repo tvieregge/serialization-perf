@@ -1,0 +1,3 @@
+[submodule "openconfig"]
+	path = openconfig
+	url = https://github.com/openconfig/public.git
