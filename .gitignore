@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+# Python generated stuff
+__pycache__
+*.pyc
+
+# Results Output
+/results

@@ -1,0 +1,5 @@
+#! /usr/bin/env python3
+
+from framework.graph import graph_timing
+
+graph_timing('results/py-native-json.csv')

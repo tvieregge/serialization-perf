@@ -1,0 +1,20 @@
+#! /usr/bin/env python3
+
+import subprocess
+import shutil
+import os
+
+SMALL_JSON = 'data/small-message.json'
+BIG_JSON = 'data/big-message.json'
+
+RESULTS_DIR = 'results'
+
+################################################################################
+# Begin test procedure
+################################################################################
+# Clean-up any old garbage
+shutil.rmtree(RESULTS_DIR, ignore_errors=True)
+os.makedirs(RESULTS_DIR)
+
+with open(os.path.join(RESULTS_DIR, 'py-native-json.csv'), 'w') as fout:
+    subprocess.run(['tests/py-native-json.py', SMALL_JSON, BIG_JSON], stdout=fout)
