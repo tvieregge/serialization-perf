@@ -17,4 +17,4 @@ shutil.rmtree(RESULTS_DIR, ignore_errors=True)
 os.makedirs(RESULTS_DIR)
 
 with open(os.path.join(RESULTS_DIR, 'py-native-json.csv'), 'w') as fout:
-    subprocess.run(['tests/py-native-json.py', SMALL_JSON, BIG_JSON], stdout=fout)
+    subprocess.run(['tests/py-stdlib-json.py', SMALL_JSON, BIG_JSON], stdout=fout)

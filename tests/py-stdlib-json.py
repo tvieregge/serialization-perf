@@ -11,7 +11,7 @@ def load_json(jFile, iterations):
     for i in range(iterations):
         data = json.loads(string)
     end = time.time()
-    return (end-start)/iterations
+    return ((end-start)/iterations, end-start)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -19,6 +19,6 @@ if __name__ == '__main__':
     parser.add_argument('big', type=str)
     args = parser.parse_args()
 
-    big_duration = load_json(args.big, 100)
-    small_duration = load_json(args.small, 100)
-    print(f'py-native-json,{small_duration},{big_duration}')
+    big_duration, total_big_duration = load_json(args.big, 144)
+    small_duration, total_small_duration = load_json(args.small, 1607938)
+    print(f'py-stdlib-json,{small_duration},{total_small_duration},{big_duration},{total_big_duration}')
