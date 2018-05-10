@@ -36,4 +36,4 @@ __pycache__
 *.pyc
 
 # Results Output
-/results
+results.csv
