@@ -2,28 +2,35 @@ import numpy as np
 import matplotlib.pyplot as plt
 import csv
 
-def graph(data_file_name):
-    with open(data_file_name, newline='') as data_file:
+def graph(data_fn):
+    with open(data_fn, newline='') as data_file:
         csv_reader = csv.reader(data_file)
-        data = [float(x) for x in next(csv_reader)] #only looking at the first row for now
 
-        """label = [data_file_name.rsplit('.', 1)[0]]*2
-        plt.bar(0, data[0])
-        plt.bar(1, data[1])
-        plt.xticks([0,1], label)
-        plt.title('Test')
-        plt.ylim(ymin=0)
-        plt.show()"""
+        data = [list(map(float, x)) for x in csv_reader]
+        means = list(map(lambda x: sum(x)/len(x), data))
 
-        objects = ('test small', 'test large')
-        y_pos = np.arange(len(objects))
-        performance = data
+        # data for plots
+        means_small = means[0]
+        means_large = means[1]
 
-        plt.bar(y_pos, performance, align='center', alpha=0.5)
+        objects = [data_fn.rsplit('.', 1)[0]] # get rid of extension
+        y_pos = [x for x in range(len(objects))] # len(small) == len(large)
+
+        # plot small data set
+        plt.subplot(2, 1, 1)
+        plt.bar(y_pos, means_small, align='center', alpha=0.5)
         plt.xticks(y_pos, objects)
-        plt.ylabel('Usage')
-        plt.title('Programming language usage')
+        plt.ylabel('Time (Seconds)')
+        plt.title('Small (~1KB)')
+        plt.plot()
 
+        # plot large data set
+        plt.subplot(2, 1, 2)
+        plt.bar(y_pos, means_large, align='center', alpha=0.5)
+        plt.xticks(y_pos, objects)
+        plt.ylabel('Time (Seconds)')
+        plt.title('Large (~10MB)')
+        plt.plot()
         plt.show()
 
 if __name__ == "__main__":
