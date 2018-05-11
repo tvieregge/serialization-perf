@@ -13,11 +13,22 @@ Want to cover formats:
 * XML (low-priority)
 
 Languages:
-* C
-* C++ (also using C frameworks)
+* C / C++ (also using C frameworks)
+    * jsoncpp
+    * Google Protobuf
+    * protobuf-c
 * Python (also Cython?)
+    * stdlib JSON
+    * Google Protobuf
+    * ujson
 * Go
+    * stdlib JSON
+    * Google Protobuf
+    * YGOT Marshal
 * Rust
+    * quick-protobuf
+    * rust-protobuf
+    * stdlib json
 
 Operations:
 * Serialize
