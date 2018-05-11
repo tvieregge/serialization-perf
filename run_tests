@@ -6,15 +6,16 @@ import os
 
 SMALL_JSON = 'data/small-message.json'
 BIG_JSON = 'data/big-message.json'
-
-RESULTS_DIR = 'results'
+RESULTS_FILE = 'results.csv'
 
 ################################################################################
 # Begin test procedure
 ################################################################################
 # Clean-up any old garbage
-shutil.rmtree(RESULTS_DIR, ignore_errors=True)
-os.makedirs(RESULTS_DIR)
+try:
+    os.remove(RESULTS_FILE)
+except FileNotFoundError:
+    pass
 
-with open(os.path.join(RESULTS_DIR, 'py-native-json.csv'), 'w') as fout:
+with open(RESULTS_FILE, 'w') as fout:
     subprocess.run(['tests/py-stdlib-json.py', SMALL_JSON, BIG_JSON], stdout=fout)
