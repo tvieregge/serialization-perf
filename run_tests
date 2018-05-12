@@ -1,12 +1,25 @@
 #! /usr/bin/env python3
+"""
+Run performance tests. This may take a while.
+"""
 
-import subprocess
-import shutil
 import os
+import subprocess
 
-SMALL_JSON = 'data/small-message.json'
-BIG_JSON = 'data/big-message.json'
+################################################################################
+# Test definitions
+################################################################################
+
+# File that all of the tests will be appended to. This file is used during plotting
 RESULTS_FILE = 'results.csv'
+
+# JSON test messages
+BIG_JSON = 'data/big-message.json'
+SMALL_JSON = 'data/small-message.json'
+
+# Serialized protobuf test messages
+BIG_PROTO = 'data/big-message.pb.bin'
+SMALL_PROTO = 'data/small-message.pb.bin'
 
 ################################################################################
 # Begin test procedure
@@ -17,5 +30,17 @@ try:
 except FileNotFoundError:
     pass
 
-with open(RESULTS_FILE, 'w') as fout:
-    subprocess.run(['tests/py-stdlib-json.py', SMALL_JSON, BIG_JSON], stdout=fout)
+# List of tests to run. Format of the items:
+#   exec: The primary command to run.
+#   big: The "big" dataset (~1MB)
+#   small: The "small" dataset (~1KB)
+# The big/small datasets are included on a per-test basis so that we can specify
+# the proto and XML files for tests that require those formats.
+tests = [
+    {'exec': 'tests/py-stdlib-json.py', 'big': BIG_JSON, 'small': SMALL_JSON},
+]
+
+# Run the tests, one at a time.
+for test in tests:
+    with open(RESULTS_FILE, 'a') as fout:
+        subprocess.run([test['exec'], test['small'], test['big']], stdout=fout)
