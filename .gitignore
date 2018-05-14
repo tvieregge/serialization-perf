@@ -35,5 +35,8 @@
 __pycache__
 *.pyc
 
+# Go build stuff
+tests/go-stdlib-json
+
 # Results Output
 results.csv

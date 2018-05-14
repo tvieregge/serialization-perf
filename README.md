@@ -42,7 +42,7 @@ Data:
 Running the tests is fairly simple, just issue the following two commands:
 ```
 # Run the actual tests. This may take a while.
-./run_tests
+make
 # Plot the results
 ./plot_results
 ```

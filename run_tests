@@ -32,12 +32,13 @@ except FileNotFoundError:
 
 # List of tests to run. Format of the items:
 #   exec: The primary command to run.
-#   big: The "big" dataset (~1MB)
+#   big: The "big" dataset (~10MB)
 #   small: The "small" dataset (~1KB)
 # The big/small datasets are included on a per-test basis so that we can specify
 # the proto and XML files for tests that require those formats.
 tests = [
     {'exec': 'tests/py-stdlib-json.py', 'big': BIG_JSON, 'small': SMALL_JSON},
+    {'exec': 'tests/go-stdlib-json', 'big': BIG_JSON, 'small': SMALL_JSON},
 ]
 
 # Run the tests, one at a time.
