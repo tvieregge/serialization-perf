@@ -58,3 +58,7 @@ tests/go-stdlib-json
 
 # Results Output
 results.csv
+
+# Protobuf Generated Files
+*.pb-c.h
+*.pb-c.c
