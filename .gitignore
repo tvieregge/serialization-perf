@@ -26,6 +26,24 @@
 *.a
 *.lib
 
+# Autotools
+*.Po
+config.*
+configure
+compile
+autom4te.*
+Makefile.in
+ltmain.sh
+missing
+.deps
+*.m4
+/schemas/cpp/Makefile
+depcomp
+install-sh
+
+# Find
+.dirstamp
+
 # Executables
 *.exe
 *.out
