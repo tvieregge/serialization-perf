@@ -38,7 +38,9 @@ except FileNotFoundError:
 # the proto and XML files for tests that require those formats.
 tests = [
     {'exec': 'tests/py-stdlib-json.py', 'big': BIG_JSON, 'small': SMALL_JSON},
+    {'exec': 'tests/py-ujson-json.py', 'big': BIG_JSON, 'small': SMALL_JSON},
     {'exec': 'tests/go-stdlib-json', 'big': BIG_JSON, 'small': SMALL_JSON},
+    {'exec': 'tests/cpp-gpb-proto', 'big': BIG_PROTO, 'small': SMALL_PROTO},
 ]
 
 # Run the tests, one at a time.
