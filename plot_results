@@ -12,17 +12,21 @@ def graph_timing(data_fn):
 
     axis = plt.subplot(2, 1, 1)
     perfData['small_us'] = perfData['small']*1e6
-    perfData.plot(y='small_us', kind='bar', ax=axis, rot=0)
+    perfData.plot(y='small_us', kind='bar', ax=axis, rot=45)
     axis.set_ylabel('Time (μs)')
     axis.set_xlabel('Serialization Method')
     axis.set_title('Time to serialize a small (~1KB) message')
+    for p in axis.patches:
+        axis.annotate('{:.3f}'.format(p.get_height()), (p.get_x()+p.get_width()/4, p.get_height()*1.005))
 
     axis = plt.subplot(2, 1, 2)
     perfData['big_ms'] = perfData['big']*1000
-    perfData.plot(y='big_ms', kind='bar', ax=axis, rot=0)
+    perfData.plot(y='big_ms', kind='bar', ax=axis, rot=45)
     axis.set_ylabel('Time (ms)')
     axis.set_xlabel('Serialization Method')
     axis.set_title('Time to serialize a large (~10MB) message')
+    for p in axis.patches:
+        axis.annotate('{:.3f}'.format(p.get_height()), (p.get_x()+p.get_width()/4, p.get_height()*1.005))
 
     plt.subplots_adjust(wspace=0.1, hspace=0.4)
     plt.show()

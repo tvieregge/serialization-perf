@@ -1,5 +1,5 @@
 lib_LIBRARIES = libocpb.a
-bin_PROGRAMS = protogen
+bin_PROGRAMS = protogen cpp-gpb-proto
 
 libocpb_a_SOURCES = \
 	./github.com/openconfig/ygot/proto/yext/yext.pb.cc\
@@ -29,6 +29,7 @@ libocpb_a_SOURCES = \
 	./openconfig/openconfig_wifi_phy/openconfig_wifi_phy.pb.cc
 
 libocpb_a_CPPFLAGS = -I.
+libocpb_a_CXXFLAGS = $(AM_CXXFLAGS) -O2
 
 protogen_SOURCES = \
 	proto_generator/main.cpp
@@ -36,3 +37,11 @@ protogen_CPPFLAGS = -I.
 protogen_DEPENDENCIES = libocpb.a
 protogen_LDADD = libocpb.a
 protogen_LDFLAGS = $(AM_LDFLAGS) -lprotobuf
+
+cpp_gpb_proto_SOURCES = \
+	tester/main.cpp
+cpp_gpb_proto_CPPFLAGS = -I.
+cpp_gpb_proto_DEPENDENCIES = libocpb.a
+cpp_gpb_proto_CXXFLAGS = $(AM_CXXFLAGS) -O2
+cpp_gpb_proto_LDADD = libocpb.a
+cpp_gpb_proto_LDFLAGS = $(AM_LDFLAGS) -lprotobuf
